@@ -5,11 +5,30 @@ import App from './App';
 import Kavita from './lines';
 // import reportWebVitals from './reportWebVitals';
 
+function Myapp(){
+  return (
+    <div>HI this is MyApp div
+      <div>We can render functions directly my defining here also </div>
+    </div>
+  )
+}
+
+
+const elem= React.createElement(
+  'a',
+  {href:'https://google.com', target:'_blank'},
+  `
+    An examle that how react actually understand the jsx 
+  `
+
+)
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
-    <App />
+    {/* <Myapp/> */}
+    {/* Myapp() will not work */}
     <Kavita/>
+    {elem}
   </React.StrictMode>
 );
 
