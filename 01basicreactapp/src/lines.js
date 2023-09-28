@@ -21,7 +21,7 @@ function Kavita(){
 }
 
 
-function Joke() {
+function Jokes() {
     return (
         <>
             <h1>LAla tum kis chakki ka khate ho </h1>
@@ -35,5 +35,5 @@ function Joke() {
     )
 }
 
-// export default Joke
-export default Kavita
+export {Kavita, Jokes}  //named export to export no of fns/ variables
+// export default Kavita //default export only one fn can be exported through this

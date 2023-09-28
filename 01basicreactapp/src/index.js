@@ -2,7 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import './index.css';
 import App from './App';
-import Kavita from './lines';
+import {Kavita, Jokes} from './lines'; //for named import destructuring is understand
+// import Kavita  from './lines'; //for defalut improt no such required
 // import reportWebVitals from './reportWebVitals';
 
 function Myapp(){
@@ -29,6 +30,7 @@ root.render(
     {/* Myapp() will not work */}
     <Kavita/>
     {elem}
+    <Jokes/>
   </React.StrictMode>
 );
 
