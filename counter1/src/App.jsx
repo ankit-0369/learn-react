@@ -5,6 +5,8 @@ import './App.css'
 
 
 
+
+
 function App() {
   // const [count, setCount] = useState(0)
   let [cnt, setCnt]= useState(0)
@@ -27,6 +29,11 @@ function App() {
     }
     
   }
+
+
+  function handleClick() {
+    alert('You clicked me!');
+  }
   return (
     <>
      <h1>Ankit & React</h1>
@@ -39,7 +46,13 @@ function App() {
       likes: {cnt}
      </p>
      
-     <button onClick={decValue}>remove value : {cnt}</button>
+     <button onClick={decValue}>dislike : {cnt}</button>
+
+
+     <button onClick={handleClick}>
+      Click me
+    </button>
+
     </>
   )
 }
