@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DC Motor Speed Control</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<style>
+    body {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0 auto;
+        padding: 0;
+        background-color: antiquewhite;
+    }
+
+    .spd {
+        width: 79px;
+        height: 50px;
+        position: absolute;
+        vertical-align: middle;
+        margin-top: 50px;
+        margin-left: -114px;
+        border: 0px none;
+        background: rgba(0, 0, 0, 0) none repeat scroll 0% 0%;
+        font: normal normal bold normal 4rem Arial;
+        text-align: center;
+        color: rgb(34, 34, 34);
+        padding: 0px;
+    }
+</style>
+<body>
+    <div style="width:100%; display: flex; text-align: center;">
+        <div style="margin: auto; font: normal normal bold normal 2rem Arial; ">
+            <h3>DC Motor Speed Control</h3>
+            <h4>MPMC Lab: Group-4</h4>
+        </div>
+    </div>
+
+    <div style="margin: 0 auto;">
+        <span id="motorSpeedDisplay" class="spd">{MOTOR_SPEED}</span>
+    </div>
+
+    <script>
+        let speed= document.querySelector("#motorSpeedDisplay");
+        speed.innerHTML= "Alpa";
+    </script>
+</body>
+</html>

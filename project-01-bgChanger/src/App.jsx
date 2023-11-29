@@ -16,7 +16,7 @@ function App() {
         hexColorRep += hexCharacters[randomPosition]
     }
 
-    console.log(hexColorRep);
+    console.log(hexColorRep); //hexColorRep is random color code. 
     setColor(hexColorRep);
     
 }
@@ -25,6 +25,7 @@ function App() {
      <div className="flex justify-center h-screen w-full duration-200"
       style={{backgroundColor: color}}
       >
+        
           <div className="fixed flex flex-wrap bottom-12
            inset-x-0 px-2 justify-center">
               <div className="flex flex-wrap justify-center gap-3 
