@@ -1,0 +1,65 @@
+
+*{
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+.amount{
+    /* border: 2px solid rgb(200, 246, 244); */
+    width: 50%;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    gap:0.3em;
+    /* margin: 2em 0.5em; */
+    padding: 0.5em 0.5em;
+
+}
+.input-box{
+    background: linear-gradient(toright, black, blue);
+    box-sizing: border-box;
+   width:100%;
+    
+}
+.input-container{
+    display: flex;
+    gap:1em;
+    border: none;
+    margin: 0em 0.2em;
+    border: 1px solid rgb(184, 255, 255);
+    background-color: white;
+    width: 90%;
+    display: flex;
+    align-items: baseline;
+}
+
+.input{
+    color:rgb(98, 98, 226);
+    padding: 0.5rem 0.1rem;
+    border-radius: 5px;
+    background-color: rgb(255, 255, 255);
+}
+.input:focus{
+    outline: none;
+}
+
+
+.currency{
+    /* border: 2px solid green; */
+    flex-direction: column;
+    padding: 0.2em 0.2em;
+}
+
+.image{
+    background: url('https://rukminim2.flixcart.com/image/850/1000/xif0q/mug/l/x/j/tea-chai-lover-quote-chai-peete-black-printed-coffee-tea-cup-for-original-imagn293yyvtdetq.jpeg?q=20');
+    height: 20rem;
+    width: 20rem;
+    background-repeat: no-repeat;
+    /* padding: 5em 5em; */
+    background-size:contain;
+    margin: 1em 1em;
+    /* border: 2px solid ;   */
+    border-radius: 2em;
+    /* border-green-100 border-solid w-full */
+}
