@@ -1,17 +1,28 @@
 import React, { useEffect, useState } from 'react'
+import { useLoaderData } from 'react-router-dom'
 
 function Github() {
-    const [data, setData] = useState([])
-    useEffect(() => {
+    
+    // const [data, setData] = useState([])
+    // useEffect(() => {
 
-        fetch('https://api.github.com/users/ankit-0369')
-            .then(response => response.json()).
-            then((data) => {
-                console.log(data);
-                setData(data);
-            })
+    //     fetch('https://api.github.com/users/ankit-0369')
+    //         .then(response => response.json()).
+    //         then((data) => {
+    //             console.log(data);
+    //             setData(data);
+    //         })
 
-    }, [])
+    // }, [])
+
+    // to fetch more effieciently we use loader with the route 
+    // whenever we hover on that link it automatically fetch the
+    //  api and store the result in cache which incereses the performance.
+    //to do this we use useLoader hook
+
+    const data= useLoaderData()
+
+
 
     return (
         <div>
@@ -67,3 +78,10 @@ function Github() {
 }
 
 export default Github
+
+
+export const githubInfoLoader= async ()=>{
+    const response= await fetch('https://api.github.com/users/ankit-0369')
+
+    return response.json();
+}
