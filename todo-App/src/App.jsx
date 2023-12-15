@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react'
 import { TodoProvider } from './Contexts'
 import './App.css'
 import TodoForm from './Components/TodoForm'
-import TodoItem from './Components/Todoitem'
+import TodoItem from './Components/TodoItem'
 
 function App() {
 
