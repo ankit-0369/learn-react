@@ -9,13 +9,14 @@ export class AuthService {
     account;
 
     constructor() {
-        this
-            .setEndpoint(config.AppwriteUrl) // Your API Endpoint
-            .setProject(config.ProjectId);
-        //Automatically whenever we create an object of this class new clientwill be created and then its object will made
-
-        this.account = new Account(this.client)
+        this.client
+        .setEndpoint(config.AppwriteUrl) // Your API Endpoint
+        .setProject(config.ProjectId);
+        this.account = new Account(this.client);
     }
+
+
+
     async createAccount({ email, password, name }) {
         try {
 
@@ -35,6 +36,8 @@ export class AuthService {
         }
     }
 
+
+
     async login(email, password) {
         try {
             const userLogin = await this.account.createEmailSession(email, password);
@@ -45,20 +48,21 @@ export class AuthService {
 
     }
 
+
+
     async getCurrentUser(){
         try {
+            return await this.account.get()
+        } catch (error) {
+            console.log("auth.js :: getCurrentUser :: error", error);
 
-            return await this.account.get();
-        } catch(error){
-            throw error;
         }
-
-        return null;
     }
+
 
     async logout(){
         try {
-                return this.account.deleteSessions();
+                return await this.account.deleteSessions();
         } catch (error) {
             console.log("APPWRITE_SERVICE::LOGOUT ERROR ",error);
         }
