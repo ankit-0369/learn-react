@@ -9,3 +9,6 @@ function Container({children}) {
 }
 
 export default Container
+
+
+// All children component will be rendered inside this box

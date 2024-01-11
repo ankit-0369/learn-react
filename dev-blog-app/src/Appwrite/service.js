@@ -127,7 +127,7 @@ export class DatabaseService{
         }
     }
 
-     getFilePreview(fileId){
+        getFilePreview(fileId){
 
         return this.storage.getFilePreview(config.bucketId, fileId)
         return null
