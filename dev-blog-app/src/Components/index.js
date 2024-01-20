@@ -5,6 +5,9 @@ import Container from "../container/Container";
 import Input from "./Input";
 import Select from "./Select"
 import Logo from "./Logo";
+import RTE from "./RTE";
+import Button from "./Button";
+
 export {
     Header,
     Footer,
@@ -12,6 +15,9 @@ export {
     Container,
     Input,
     Logo,
-    Select
+    Select,
+    RTE,
+    Button,
+    
 
 }
