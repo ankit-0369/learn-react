@@ -130,7 +130,7 @@ export class DatabaseService{
         getFilePreview(fileId){
 
         return this.storage.getFilePreview(config.bucketId, fileId)
-        return null
+       
      }
 
 
