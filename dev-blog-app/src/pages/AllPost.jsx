@@ -1,22 +1,28 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { PostCard, Container } from '../Components'
 import databaseService from '../Appwrite/service'
 
-const [AllPosts, setAllPost] = useState([])
-
-databaseService.getPosts([])
-    .then((posts) => {
-        if (posts) {
-            setAllPost(posts.documents);
-        } else {
-            console.log("Error:: pages/allpost");
-        }
-
-    })
 
 
 function AllPost() {
-    return (
+
+    const [AllPosts, setAllPost] = useState([])
+    const [loader, setLoader]= useState(true)
+    
+    useEffect(() => {
+
+        databaseService.getPosts([])
+        .then((posts) => {
+            if (posts) {
+                setAllPost(posts.documents);
+                setLoader(false)
+            }
+
+        })
+        return
+     }, [])
+
+    return loader ? <div>Loading...</div> : <div>
         <div className='w-full py-8'>
             <Container>
                 <div className='flex flex-wrap'>
@@ -32,7 +38,7 @@ function AllPost() {
                 </div>
             </Container>
         </div>
-    )
+    </div>
 }
 
 export default AllPost

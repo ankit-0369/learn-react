@@ -13,7 +13,7 @@ const navigate= useNavigate()
 const dispatch= useDispatch()
 const {
   register,
-   HandleSubmit,
+  handleSubmit,
   formState:{ errors}
   }= useForm()
 const [error, setError]= useState()
@@ -22,15 +22,18 @@ const login= async(data) =>{
     setError("")
 
     try {
-        
-        const session= await authService.login(data)
+        // console.log("login fn checked");
+        const session= await authService.login(data);
+        console.log("session", session)
         if(session){
             const userData= await authService.getCurrentUser()
+            console.log("user found")
             if(userData) dispatch(storeLogin(userData))
             navigate("/")
         }
     } catch (error) {
         setError(error.message)
+      
     }
 }
   return (
@@ -56,7 +59,7 @@ const login= async(data) =>{
         {error && <p className='text-red-800 mt-8 text-center'> {error} </p>}
         
 
-        <form onSubmit={HandleSubmit(login)} className='mt-8'>
+        <form onSubmit={handleSubmit(login)} className='mt-8'>
            <div className='space-y-5'>
 
            <Input
@@ -74,29 +77,29 @@ const login= async(data) =>{
             />
 
             {errors.email && errors.email.type==='required' &&
-             <p className='text-red-600 mt-8 text-center '>Email is Required</p>
+             <p className='text-purple-600 mt-8 text-center '>Email is Required</p>
              }
 
             
             <Input
             type= "password"
-            label= "Password"
-            placeholder= "Enter the Password"
+            label= "Password: "
+            placeholder= "bhai Enter the Password"
             
             {...register("password", {
               required: true,
-              validate: {
-                checkLength: (value) => value.length >= 6,
-                matchPattern: (value) =>
-                /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(
-                    value
-                )
-            }
+            //   validate: {
+            //     checkLength: (value) => value.length >= 6,
+            //     matchPattern: (value) =>
+            //     /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(
+            //         value
+            //     )
+            // }
 
             })}
             />
 
-            {
+            {/* {
               errors.password?.type==='required' &&
               <p className='text-red-600 mt-8 text-center'> Password required</p>
             }
@@ -110,7 +113,7 @@ const login= async(data) =>{
               errors.password?.type==='matchPattern' &&
               <p className='text-red-600 mt-8 text-center'> Password should contain atleast one Uppercase,
                lowercase, digit and special symbol </p>
-            }
+            } */}
 
             {/* {
               errors.password && errors.password.type==='required' &&

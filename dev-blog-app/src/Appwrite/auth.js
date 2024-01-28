@@ -38,8 +38,9 @@ export class AuthService {
 
 
 
-    async login(email, password) {
+    async login({email, password}) {
         try {
+            console.log("login tried fn call from auth.js", email," and  ", password)
             const userLogin = await this.account.createEmailSession(email, password);
             return userLogin;
         } catch (error) {
@@ -54,7 +55,7 @@ export class AuthService {
         try {
             return await this.account.get()
         } catch (error) {
-            console.log("auth.js :: getCurrentUser :: error", error);
+            console.log("auth.js :: getCurrentUser :: error::", error);
 
         }
     }

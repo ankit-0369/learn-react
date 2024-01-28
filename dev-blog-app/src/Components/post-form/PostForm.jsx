@@ -8,8 +8,9 @@ import { useSelector } from 'react-redux'
 
 
 function PostForm({ post }) {
+    console.log("Post from postform comp:: ", post);
 
-    const { register, handleSubmit, getValues, setValue, watch } = useForm({
+    const { register, handleSubmit, getValues, control, setValue, watch } = useForm({
         defaultValues: {
             title: post?.title || '',
             slug: post?.slug || '',
@@ -18,11 +19,12 @@ function PostForm({ post }) {
         }
     })
 
-    const userData = useSelector((state) => (state.auth.userData))
-
+    const userData = useSelector((state) => (state.userData))
+    console.log("userData from signup comp ",userData)
     const navigate = useNavigate()
 
     const submit = async (data) => {
+        console.log("Post from postform comp:: after submit ::  ", post);
         if (post) {
             const file = data.image[0] ?
                 await databaseService.uploadFile(data.image[0]) : null
@@ -47,6 +49,7 @@ function PostForm({ post }) {
 
             const file = await databaseService.uploadFile(data.image[0])
             if (file) {
+              
                 const fileId = file.$id;
                 data.featuredImage = fileId
                 const dbPost = await databaseService.createPost({
@@ -55,6 +58,7 @@ function PostForm({ post }) {
                 })
 
                 if (dbPost) {
+                    console.log("dbPost after post formed : ", dbPost)
                     navigate(`/post/${dbPost.$id}`)
                 }
             }
@@ -63,15 +67,17 @@ function PostForm({ post }) {
     }
 
     const slugTransform = useCallback((value) => {
-        if (value && typeof (value) === 'string')
+        if (value && typeof (value) === "string")
             return value.trim()
                 .toLowerCase()
-                .replace(/^[a-zA-Z\d\s]+/g, '-')
-                .replace(/\s/g, '-')           // Replace non-word, non-digits, space characters with hyphen
-                .replace(/[\s]+/g, '-')              // Replace consecutive spaces with a single hyphen
-                .replace(/[-]+/g, '-');
+                .replace(/[^a-zA-Z\d\s]+/g, "-")
+                .replace(/\s/g, "-");
+                // .replace(/^[a-zA-Z\d\s]+/g, '-')
+                // .replace(/\s/g, '-')           // Replace non-word, non-digits, space characters with hyphen
+                // .replace(/[\s]+/g, '-')              // Replace consecutive spaces with a single hyphen
+                // .replace(/[-]+/g, '-');
 
-        return ''
+        return "";
     }, [])
 
 
@@ -107,7 +113,7 @@ function PostForm({ post }) {
                     className="mb-4"
                     {...register('slug', { required: true })}
                     onInput={(e) => {
-                        setValue('slug', slugTransform(e.currentyTarget.value), { shouldValidate: true })
+                        setValue('slug', slugTransform(e.currentTarget.value), { shouldValidate: true })
 
                     }}
                 />
@@ -129,20 +135,23 @@ function PostForm({ post }) {
 
                 />
 
-                {
+                {   
+                
                     post && (
+                       
                         <div className='mb-4 w-full'>
                             <img
                             src={databaseService.getFilePreview(post.featuredImage)}
                             alt={post.title}
                             className=' rounded-lg'
                             />
+                            
                         </div>
                     )
                 }
 
                 <Select
-                className= "mb-4"
+                className= "mb-4 text-black"
                 options= {["active", "inactive"]}
                 label= "Status"
                 {...register("status", {required: true})}
@@ -151,7 +160,7 @@ function PostForm({ post }) {
 
                 <Button
                 type='submit'
-                bgColor= {post ? 'bg-green-300' : 'bg-gray-100'}
+                bgColor= {post ? 'bg-green-300' : 'bg-blue-400'}
                 className='w-full'
                 
                 >

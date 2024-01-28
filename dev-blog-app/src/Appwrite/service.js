@@ -51,7 +51,7 @@ export class DatabaseService{
                 
                 return await this.databases.updateDocument(
                     config.databaseId,
-                    config.databaseId,
+                    config.collectionId,
                     slug,
                     {
                         content, 
@@ -128,7 +128,7 @@ export class DatabaseService{
     }
 
         getFilePreview(fileId){
-
+            console.log("file id of getFilePreview : ",fileId)
         return this.storage.getFilePreview(config.bucketId, fileId)
        
      }

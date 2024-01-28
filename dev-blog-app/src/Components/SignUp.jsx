@@ -7,7 +7,6 @@ import Button from './Button'
 import authService from '../Appwrite/auth'
 import { login } from '../Store/AuthSlice'
 
-
 function SignUp() {
 
     const dispatch = useDispatch()
@@ -15,8 +14,7 @@ function SignUp() {
     const [error, setError] = useState()
     const {
         register,
-        handleSubmit,
-        formState: { errors }
+        handleSubmit
     } = useForm()
 
 const signup= async(data) => {
@@ -66,9 +64,9 @@ const signup= async(data) => {
 
                             })}
                         />
-                        {errors.fullName?.type === 'required' &&
+                        {/* {error.fullName?.type === 'required' &&
                             <p className='text-red-600 text-center mt-8'>Full Name Required</p>
-                        }
+                        } */}
 
                         <Input
                             tpye='email'
@@ -83,9 +81,8 @@ const signup= async(data) => {
                             })}
                         />
 
-                        {errors.email && errors.email.type === 'required' &&
-                            <p className='text-red-600 mt-8 text-center '>Email is Required</p>
-                        }
+                          <p className='text-red-600 mt-8 text-center '>Email is Required</p>
+                        
 
                         <Input
                             type='password'
@@ -93,17 +90,17 @@ const signup= async(data) => {
                             placeholder='Enter the Passoword'
                             {...register("password", {
                                 required: true,
-                                validate: {
-                                    checkLength: (value) => value.length >= 6,
-                                    matchPattern: (value) =>
-                                        /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(
-                                            value
-                                        )
-                                }
+                                // validate: {
+                                //     checkLength: (value) => value.length >= 6,
+                                //     matchPattern: (value) =>
+                                //         /(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s)(?=.*[!@#$*])/.test(
+                                //             value
+                                //         )
+                                // }
                             })}
                         />
 
-                        {
+                        {/* {
                             errors.password?.type === 'required' &&
                             <p className='text-red-600 mt-8 text-center'> Password required</p>
                         }
@@ -117,7 +114,7 @@ const signup= async(data) => {
                             errors.password?.type === 'matchPattern' &&
                             <p className='text-red-600 mt-8 text-center'> Password should contain atleast one Uppercase,
                                 lowercase, digit and special symbol </p>
-                        }
+                        } */}
 
                         <Button className='w-full' type='submit'>
                            Create Account
