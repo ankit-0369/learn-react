@@ -17,20 +17,21 @@ function SignUp() {
         handleSubmit
     } = useForm()
 
-const signup= async(data) => {
-    setError("")
-    try {
-        
-        const session= await authService.createAccount(data);
-        if(session){
-            const userData= await authService.getCurrentUser()
-            if(userData) dispatch(login(userData))
-            navigate("/")
+    const signup = async (data) => {
+        setError("")
+        try {
+
+            const session = await authService.createAccount(data);
+            if (session) {
+                const userData = await authService.getCurrentUser()
+                if (userData) dispatch(login(userData))
+                console.log("userData  ", userData);
+                navigate("/")
+            }
+        } catch (error) {
+            setError(error.message);
         }
-    } catch (error) {
-        setError(error.message);
     }
-}
 
     return (
         <div className='flex items-center w-full justify-center'>
@@ -59,7 +60,7 @@ const signup= async(data) => {
                             tpye='text'
                             label='fullName'
                             placeholder='Enter the Full Name'
-                            {...register("fullName", {
+                            {...register("name", {
                                 required: true
 
                             })}
@@ -81,9 +82,7 @@ const signup= async(data) => {
                             })}
                         />
 
-                          <p className='text-red-600 mt-8 text-center '>Email is Required</p>
-                        
-
+                        {/* {error && <p className="text-red-600 mt-8 text-center">{error}</p>} */}
                         <Input
                             type='password'
                             label='password'
@@ -117,7 +116,7 @@ const signup= async(data) => {
                         } */}
 
                         <Button className='w-full' type='submit'>
-                           Create Account
+                            Create Account
                         </Button>
 
                     </div>

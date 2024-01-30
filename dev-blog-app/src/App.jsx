@@ -31,11 +31,11 @@ function App() {
   }, [])
 
   return !loading ? (<div className=' min-h-screen flex flex-wrap justify-center items-center
-  border-green-400 border-2 border-solid  content-between bg-gray-700'>
+    content-between bg-[#1D232A]'>
 
-    <div className='w-full block border-2 border-red-400'>
+    <div className='w-full block'>
       <Header />
-      <main>
+      <main className=' min-h-screen'>
         <Outlet />
       </main>
       <Footer />
@@ -44,7 +44,7 @@ function App() {
     : (
       //loader Component
       <div
-        className=' w-full min-h-screen text-3xl text-center text-green-500 shadow-lime-400
+        className=' w-full min-h-screen text-3xl text-center text-red-800 shadow-lime-400
     flex justify-center items-center
     '> 
     

@@ -17,7 +17,7 @@ const {
   formState:{ errors}
   }= useForm()
 const [error, setError]= useState()
-
+const [loader, setLoader]= useState(false)
 const login= async(data) =>{
     setError("")
 
@@ -26,18 +26,32 @@ const login= async(data) =>{
         const session= await authService.login(data);
         console.log("session", session)
         if(session){
-            const userData= await authService.getCurrentUser()
-            console.log("user found")
-            if(userData) dispatch(storeLogin(userData))
-            navigate("/")
+            // const userData= await authService.getCurrentUser()
+            // console.log("user found")
+            // if(userData) {
+            //   dispatch(storeLogin(userData))
+            // navigate("/")
+            // }
+
+            authService.getCurrentUser().
+            then((userData) => {
+              dispatch(storeLogin(userData))
+              setLoader(true)
+              navigate("/")
+            })
         }
     } catch (error) {
         setError(error.message)
       
     }
 }
+if (loader) return <div>Looged In Successfully</div>
   return (
-    <div className='flex items-center w-full justify-center'>
+    
+   <>
+   
+   {/* {loader && <div>Looged In Successfully</div>} will not work */}
+   <div className='flex items-center w-full justify-center'>
       <div className= {`mx-auto w-full max-w-lg bg-gray-100 rounded-xl p-10 border border-black/10`}>
         <div className='mb-2 flex justify-center'>
           <span className='inline-block w-full max-w-[100px]'>
@@ -126,7 +140,7 @@ const login= async(data) =>{
             } */}
             
             <Button
-            className='w-full'
+            className='w-full btn btn-primary  btn-circle btn-success  '
             type='submit'
             >
               SignIn
@@ -137,6 +151,8 @@ const login= async(data) =>{
       </div>
       
     </div>
+   </>
+    
   )
 }
 

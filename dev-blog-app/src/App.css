@@ -1,0 +1,22 @@
+/* Add these styles to your CSS file */
+.message-box {
+    position: fixed;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: #4caf50; /* Green background color */
+    color: white; /* White text color */
+    padding: 10px; /* Padding */
+    margin-top: 20px; /* Margin from the top */
+    animation: slideIn 0.5s ease-in-out; /* Animation */
+  }
+  
+  @keyframes slideIn {
+    from {
+      transform: translateY(-100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+  

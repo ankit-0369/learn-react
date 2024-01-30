@@ -8,12 +8,27 @@ import { useSelector } from 'react-redux'
 
 
 function PostForm({ post }) {
-    console.log("Post from postform comp:: ", post);
+    // console.log("Post from postform comp:: ", post);
+
+    const slugTransform = useCallback((value) => {
+        if (value && typeof (value) === "string")
+            return value.trim()
+                .toLowerCase()
+                .replace(/[^a-zA-Z\d\s]+/g, "-")
+                .replace(/\s/g, "-");
+                // .replace(/^[a-zA-Z\d\s]+/g, '-')
+                // .replace(/\s/g, '-')           // Replace non-word, non-digits, space characters with hyphen
+                // .replace(/[\s]+/g, '-')              // Replace consecutive spaces with a single hyphen
+                // .replace(/[-]+/g, '-');
+
+        return "";
+    }, [])
+
 
     const { register, handleSubmit, getValues, control, setValue, watch } = useForm({
         defaultValues: {
             title: post?.title || '',
-            slug: post?.slug || '',
+            slug: post? slugTransform(post.title) : '',
             content: post?.content || '',
             status: post?.status || ''
         }
@@ -24,7 +39,8 @@ function PostForm({ post }) {
     const navigate = useNavigate()
 
     const submit = async (data) => {
-        console.log("Post from postform comp:: after submit ::  ", post);
+        // console.log("Post from postform comp:: after submit ::  ", post);
+        console.log("userData : ", userData);
         if (post) {
             const file = data.image[0] ?
                 await databaseService.uploadFile(data.image[0]) : null
@@ -66,20 +82,7 @@ function PostForm({ post }) {
         }
     }
 
-    const slugTransform = useCallback((value) => {
-        if (value && typeof (value) === "string")
-            return value.trim()
-                .toLowerCase()
-                .replace(/[^a-zA-Z\d\s]+/g, "-")
-                .replace(/\s/g, "-");
-                // .replace(/^[a-zA-Z\d\s]+/g, '-')
-                // .replace(/\s/g, '-')           // Replace non-word, non-digits, space characters with hyphen
-                // .replace(/[\s]+/g, '-')              // Replace consecutive spaces with a single hyphen
-                // .replace(/[-]+/g, '-');
-
-        return "";
-    }, [])
-
+    
 
 
     useEffect(() => {

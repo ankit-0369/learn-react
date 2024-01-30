@@ -4,7 +4,7 @@ import { LogoutBtn, Container, } from '../index'
 import { useSelector } from 'react-redux'
 import { Link, useNavigate } from 'react-router-dom'
 import Logo from '../Logo'
-
+import { GiFeather } from "react-icons/gi";
 
 function Header() {
 
@@ -15,7 +15,7 @@ function Header() {
     {
       name: "Home",
       slug: "/",
-      active: true
+      active: !authStatus
     },
     {
       name: 'Login',
@@ -29,35 +29,39 @@ function Header() {
     },
 
     {
-      name: 'Add Post',
+      name: 'Write',
       slug: '/add-post',
       active: authStatus
     },
     {
-      name: 'All-post',
+      name: 'feed',
       slug: '/all-post',
       active: authStatus
     }
   ]
 
   return (
-    <header className='py-3 shadow bg-gray-500'>
+    <header className='py-3  bg-[#1D232A] shadow-lg text-white'>
       <Container>
-        <nav className='flex'>
-          <div className='mr-4'>
-            <Link to='/'>
+        <nav>
+          <div className=' flex justify-end items-baseline pr-4'>
+           <div className=''>
+           <Link to='/'>
               <Logo width='100px' />
             </Link>
-            <ul className='flex ml-auto'>
+           </div>
+            <ul className='flex ml-auto gap-2'>
               {navItems.map((item) =>
                 item.active ? (
                   <li key={item.name}>
                     <button
                       onClick={() => navigate(item.slug)}
-                      className='inline-block px-6 py-2 duration-200 hover:bg-blue-100
+                      className='inline-block px-6 py-2 duration-200 hover:bg-white hover:text-[#1D232A]
                      rounded-full '
                     >
-                      {item.name}
+                      {item.name ==='Write' ? 
+                      <div className='flex justify-center items-center gap-1'> <span><GiFeather/></span><span> {item.name}</span></div> :
+                       <div>{item.name}</div>  }
                     </button>
                   </li>
                 ) : null
