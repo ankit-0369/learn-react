@@ -13,6 +13,7 @@ import EditPost from './pages/EditPost.jsx'
 import Login from './pages/Login.jsx'
 import Post from './pages/Post.jsx'
 import Home from './pages/Home.jsx'
+import Feed from './pages/Feed.jsx'
 const router = createBrowserRouter([
   {
     path: '/',
@@ -35,6 +36,14 @@ const router = createBrowserRouter([
         element: (
           <Protected authentication={false}>
             <Signup />
+          </Protected>
+        )
+      },
+      {
+        path:'/feed',
+        element: (
+          <Protected authentication= {false}>
+            <Feed/>
           </Protected>
         )
       },

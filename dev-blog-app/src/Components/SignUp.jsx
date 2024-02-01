@@ -23,15 +23,20 @@ function SignUp() {
 
             const session = await authService.createAccount(data);
             if (session) {
+                console.log("session created at signup", session);
                 const userData = await authService.getCurrentUser()
                 if (userData) dispatch(login(userData))
                 console.log("userData  ", userData);
                 navigate("/")
             }
         } catch (error) {
-            setError(error.message);
+            setError(error);
+            // console.log("error when signup click: ", error);
+            // console.log("data coming from react hook form when signedup : ",data);
         }
     }
+
+        
 
     return (
         <div className='flex items-center w-full justify-center'>

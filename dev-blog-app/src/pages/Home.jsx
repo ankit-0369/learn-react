@@ -1,59 +1,40 @@
-import React, { useState, useEffect } from 'react'
-import { Container, PostCard } from '../Components'
-import databaseService from '../Appwrite/service'
+import React from 'react';
+import { useSelector } from 'react-redux';
 
+import { Link } from 'react-router-dom';
+import AllPost from './AllPost';
 
 function Home() {
-
-    const [AllPost, setAllPost] = useState([])
-    useEffect(() => {
-        databaseService.getPosts().then((post) => {
-            if (post) {
-                setAllPost(post.documents)
-            }
-        })
-    }, [])
-
-
-    if (AllPost.length === 0) {
-        return (
-            //loader Component
-            <div
-                className=' w-full min-h-screen text-3xl text-center text-green-500 shadow-lime-400
-        flex justify-center items-center
-        '>
-
-                <span className="loading loading-infinity w-32"></span>
-
-            </div>
-        )
-    }
-
-    return (
-
-        <div className='w-full py-8'>
-           <Container>
-                <div className='flex flex-wrap'>
-                    {
-                        AllPost.map((post) => (
-                            <div className=' mx-auto py-3 flex flex-wrap' key={post.$id}>
-                                <PostCard
-                                    {...post}
-                                />
-                            </div>
-                        ))
-                    }
-
-                    
-
-
+    const authStatus = useSelector(state => state.status);
+    if (!authStatus) return (
+        <div className='w-full py-2'>
+            <div className="hero min-h-screen object-cover" style={{ backgroundImage: 'url(../../src/assets/hero.jpg)' }}>
+                <div className="hero-overlay bg-opacity-60"></div>
+                <div className="hero-content text-center text-neutral-content">
+                    <div className="max-w-md">
+                        <h1 className="mb-5 text-5xl font-bold">Welcome Devs !!</h1>
+                        <p className="mb-5">
+                            Lorem ipsum dolor sit amet consectetur adipisicing elit. Eum sunt praesentium doloremque similique natus quo. At nesciunt earum veritatis excepturi enim assumenda debitis a saepe commodi. Eligendi illum doloremque perferendis?
+                        </p>
+                        <Link
+                         to={'/login'}
+                         className='btn btn-primary'
+                         >
+                        Get Started
+                        </Link>
+                    </div>
                 </div>
-            </Container>
+            </div>
 
-            
         </div>
     )
 
+
+    return (
+        <div className='w-full py-8'>
+            <AllPost />
+        </div>
+    );
 }
 
-export default Home
+export default Home;

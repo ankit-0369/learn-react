@@ -26,6 +26,7 @@ const login= async(data) =>{
         const session= await authService.login(data);
         console.log("session", session)
         if(session){
+         
             // const userData= await authService.getCurrentUser()
             // console.log("user found")
             // if(userData) {
@@ -35,6 +36,7 @@ const login= async(data) =>{
 
             authService.getCurrentUser().
             then((userData) => {
+              console.log("userdata from login", userData);
               dispatch(storeLogin(userData))
               setLoader(true)
               navigate("/")

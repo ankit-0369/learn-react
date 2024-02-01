@@ -18,6 +18,11 @@ function Header() {
       active: !authStatus
     },
     {
+      name: 'Feed',
+      slug: '/feed',
+      active: !authStatus
+    },
+    {
       name: 'Login',
       slug: "/login",
       active: !authStatus
@@ -34,10 +39,11 @@ function Header() {
       active: authStatus
     },
     {
-      name: 'feed',
+      name: 'Feed',
       slug: '/all-post',
       active: authStatus
     }
+    
   ]
 
   return (

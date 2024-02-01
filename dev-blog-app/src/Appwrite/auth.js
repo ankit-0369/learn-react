@@ -23,7 +23,11 @@ export class AuthService {
             const userAccount = await this.account.create(ID.unique(), email, password, name);
             if (userAccount) {
                 //usr created and need to login s login is defined we can return it here,
-                return this.login(email, password);
+                const logInData= {
+                    email, 
+                    password
+                };
+                return this.login(logInData);
 
             } else {
 
@@ -55,7 +59,9 @@ export class AuthService {
         try {
             return await this.account.get()
         } catch (error) {
-            console.log("auth.js :: getCurrentUser :: error::", error);
+           if(error.type ==='general_unauthorized_scope')
+            console.log("User not Logged in...");
+        
 
         }
     }

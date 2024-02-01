@@ -128,7 +128,7 @@ export class DatabaseService{
     }
 
         getFilePreview(fileId){
-            console.log("file id of getFilePreview : ",fileId)
+            // console.log("file id of getFilePreview : ",fileId)
         return this.storage.getFilePreview(config.bucketId, fileId)
        
      }
